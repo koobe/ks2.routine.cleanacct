@@ -1,19 +1,19 @@
 ks2.routine.cleanacct
 =====================
 
-1. 用 domain name 查詢要清除帳號的站台的 TenanId：
+I. 用 domain name 查詢要清除帳號的站台的 TenanId：
 ```
 SELECT *
 FROM kbServiceTenantTbl
 WHERE (DomainName LIKE '%?%')
 ```
 
-2. 根據 TenanId 列出該站台所有使用者帳號 (排除admin帳號或其他預設帳號)：
+II. 根據 TenanId 列出該站台所有使用者帳號 (排除admin帳號或其他預設帳號)：
 ```
 SELECT * FROM kbUserListTbl WHERE (TenantId = ?) and LoginId <> 'admin'
 ```
 
-3. 刪除使用者在資料表 kbUserBookListTbl 的資料：
+III. 刪除使用者在資料表 kbUserBookListTbl 的資料：
 ```
 WITH q AS (
 SELECT *
@@ -22,7 +22,7 @@ WHERE (UserId IN (SELECT UserId FROM kbUserListTbl WHERE (TenantId = ?) AND (Log
 ) DELETE FROM q
 ```
 
-4. 刪除使用者在資料表 kbGroupUserTbl 的資料：
+III. 刪除使用者在資料表 kbGroupUserTbl 的資料：
 ```
 WITH q as (
 SELECT *
@@ -31,7 +31,7 @@ WHERE (UserId IN (SELECT UserId FROM kbUserListTbl WHERE (TenantId = ?) AND (Log
 ) DELETE FROM q
 ```
 
-5. 刪除使用者資料 kbServiceTenantTbl：
+V. 刪除使用者資料 kbServiceTenantTbl：
 ```
 WITH q AS (
 SELECT * FROM kbUserListTbl WHERE (TenantId = ?) and LoginId <> 'admin'
