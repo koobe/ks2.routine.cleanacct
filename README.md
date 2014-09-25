@@ -1,4 +1,4 @@
-ks2.routine.cleanacct
+###清除特定站台的使用者帳戶資料
 =====================
 
 I. 用 domain name 查詢要清除帳號的站台的 TenanId：
