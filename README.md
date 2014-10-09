@@ -31,7 +31,7 @@ WHERE (UserId IN (SELECT UserId FROM kbUserListTbl WHERE (TenantId = ?) AND (Log
 ) DELETE FROM q
 ```
 
-V. 刪除使用者資料 kbServiceTenantTbl：
+IV. 刪除使用者資料 kbServiceTenantTbl：
 ```
 WITH q AS (
 SELECT * FROM kbUserListTbl WHERE (TenantId = ?) and LoginId <> 'admin'
